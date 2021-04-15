@@ -5,7 +5,7 @@ import retrofit2.http.*
 
 interface UserController {
     @POST("/hello")
-    fun hello(@Body user: User): Call<Void>
+    fun hello(@Body user: User): Call<Boolean>
 
     @GET("/list")
     fun list(): Call<List<User>>

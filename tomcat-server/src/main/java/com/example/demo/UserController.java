@@ -27,9 +27,10 @@ public class UserController {
 
 	
 	@RequestMapping(method = RequestMethod.POST,value = "/hello")
-	public void hello(@RequestBody User user) {
+	public Boolean hello(@RequestBody User user) {
 		System.out.println(user.firstName);
 		list.add(user);
+		return new Boolean(true);
 	}
 	
 	@RequestMapping("/list")

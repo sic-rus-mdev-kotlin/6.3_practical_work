@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
-    val connectionURL: String = "http://192.168.49.112:8080"
+    val connectionURL: String = "http://192.168.49.102:8080"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +36,15 @@ class MainActivity : AppCompatActivity() {
         send.setOnClickListener(View.OnClickListener {
             Thread() {
                 run {
-                    val call: Call<Void> = service.hello(
+                    val call: Call<Boolean> = service.hello(
                         User(
                             firstname.text.toString(),
                             lastname.text.toString()
                         )
                     )
-                    call.execute()
+                    val userResponse:Response<Boolean>  = call.execute()
+                    val result: Boolean? = userResponse.body()
+                    Log.d("RetrofitClient","Send data to server was: "+result)
                 }
             }.start()
         })
